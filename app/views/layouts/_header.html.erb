@@ -1,0 +1,9 @@
+<div class="header">
+  <% if user_signed_in?  %>
+      <%= user_name %>
+      <%= link_to('Профиль') %>
+      <%= link_to('Выйти', destroy_user_session_path, :method => :delete) %>
+  <% else %>
+      <%= link_to('Войти', new_user_session_path)  %>  или <%= link_to('зарегистрироваться', new_user_registration_path)  %>
+  <% end %>
+</div>
