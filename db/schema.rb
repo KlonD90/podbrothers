@@ -11,14 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151017135343) do
+ActiveRecord::Schema.define(version: 20151128164646) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "category_podcasts", force: :cascade do |t|
+    t.integer  "category_id"
+    t.integer  "podcast_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "episodes", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.integer  "podcast_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -27,6 +40,7 @@ ActiveRecord::Schema.define(version: 20151017135343) do
     t.string   "file_content_type"
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
+    t.integer  "download_count",     default: 0, null: false
   end
 
   create_table "podcasts", force: :cascade do |t|
@@ -58,6 +72,7 @@ ActiveRecord::Schema.define(version: 20151017135343) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -1,0 +1,11 @@
+<% if @podcasts.blank? %>
+    Not exists
+<% else %>
+    <% @podcasts.each do |p| %>
+        <h1><%= p.title %></h1>
+        <img src="<%= p.image.url(:thumb) %>"/>
+        <div class="podcast__description">
+          <%= p.description %>
+        </div>
+    <% end %>
+<% end %>

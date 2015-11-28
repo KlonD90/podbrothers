@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'materialize-sass'
 gem 'paperclip'
 gem 'react-rails'
 gem 'rails_admin'
