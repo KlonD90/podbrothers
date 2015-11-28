@@ -1,0 +1,7 @@
+<%= simple_form_for @podcast, :method => :post, :url => url_for(action: @action), :html => {:multipart => true } do |f| %>
+    <%= f.input :title, label: 'Название', error: 'Не введено название подкаста' %>
+    <%= f.input :description, label: 'Описание', error: 'Не введено описание подкаста' %>
+    <%= f.file_field :image, label: 'Обложка' %>
+    <%= f.association :categories, label: 'Категории:', as: :check_boxes %>
+    <%= f.button :submit %>
+<% end %>

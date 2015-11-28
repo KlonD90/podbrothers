@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
+
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'main/index'
   root 'main#index'
-
+  get 'podcast/show/:id' => 'podcast#show'
+  post 'podcast/create' => 'podcast#create'
+  get 'podcast/create' => 'podcast#form'
+  get 'podcast/:id/edit'=> 'podcast#edit'
+  post 'podcast/:id/edit'=> 'podcast#update'
+  get 'podcast/mylist'=> 'podcast#list'
   devise_for :users, controllers: { registrations: "users/registrations" }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
