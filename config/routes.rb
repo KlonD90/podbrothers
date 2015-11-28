@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   get 'main/index'
+  root 'main#index'
 
-  devise_for :users
+  devise_for :users, controllers: { registrations: "users/registrations" }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
