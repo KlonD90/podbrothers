@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get 'podcast/:id/edit'=> 'podcast#edit'
   post 'podcast/:id/edit'=> 'podcast#update'
   get 'podcast/mylist'=> 'podcast#list'
+  get 'podcast/:id/add_episode' => 'episodes_manipulate#create_form'
+  post 'podcast/:id/add_episode' => 'episodes_manipulate#create'
   devise_for :users, controllers: { registrations: "users/registrations" }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

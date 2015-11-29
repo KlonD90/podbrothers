@@ -9,6 +9,12 @@
         <li>
           <%= link_to('Выйти', destroy_user_session_path, :method => :delete) %>
         </li>
+          <li>
+            <%= link_to('Мои подкасты', action: 'list', controller: 'podcast') %>
+          </li>
+          <li>
+            <%= link_to('Добавить подкаст', action: 'form', controller: 'podcast') %>
+          </li>
       <% else %>
           <li>
             <%= link_to('Войти', new_user_session_path)  %>
