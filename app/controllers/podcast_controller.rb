@@ -1,5 +1,5 @@
 class PodcastController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :show
 
   def create
     @podcast = Podcast.new(podcast_params)

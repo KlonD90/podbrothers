@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'main/index'
@@ -17,6 +18,9 @@ Rails.application.routes.draw do
   get 'podcast/:podcast_id/episode/:episode_id/edit'=> 'episode#edit'
   post 'podcast/:podcast_id/episode/:episode_id/edit'=> 'episode#update'
   get 'podcast/:podcast_id/episode/mylist'=> 'episode#list'
+
+  # get 'podcast/:id/add_episode' => 'episodes_manipulate#create_form'
+  # post 'podcast/:id/add_episode' => 'episodes_manipulate#create'
   devise_for :users, controllers: { registrations: "users/registrations" }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

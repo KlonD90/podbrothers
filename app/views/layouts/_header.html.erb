@@ -1,9 +1,28 @@
-<div class="header">
-  <% if user_signed_in?  %>
-      <%= user_name %>
-      <%= link_to('Профиль') %>
-      <%= link_to('Выйти', destroy_user_session_path, :method => :delete) %>
-  <% else %>
-      <%= link_to('Войти', new_user_session_path)  %>  или <%= link_to('зарегистрироваться', new_user_registration_path)  %>
-  <% end %>
-</div>
+<nav>
+  <div class="nav-wrapper">
+    <a href="/" class="brand-logo center">Podbrothers</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <% if user_signed_in?  %>
+        <li>
+          <%= link_to(user_name) %>
+        </li>
+        <li>
+          <%= link_to('Выйти', destroy_user_session_path, :method => :delete) %>
+        </li>
+          <li>
+            <%= link_to('Мои подкасты', action: 'list', controller: 'podcast') %>
+          </li>
+          <li>
+            <%= link_to('Добавить подкаст', action: 'form', controller: 'podcast') %>
+          </li>
+      <% else %>
+          <li>
+            <%= link_to('Войти', new_user_session_path)  %>
+          </li>
+          <li><%= link_to('Регистрация', new_user_registration_path)  %></li>
+      <% end %>
+    </ul>
+
+
+  </div>
+</nav>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151128153322) do
+ActiveRecord::Schema.define(version: 20151128164646) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"
@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 20151128153322) do
     t.string   "title"
     t.text     "description"
     t.integer  "podcast_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20151128153322) do
     t.string   "file_content_type"
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
+    t.integer  "download_count",     default: 0, null: false
   end
 
   create_table "podcasts", force: :cascade do |t|
