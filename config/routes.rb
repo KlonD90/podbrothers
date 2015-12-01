@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
-
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'main/index'
   root 'main#index'
@@ -12,12 +10,12 @@ Rails.application.routes.draw do
   get 'podcast/mylist'=> 'podcast#list'
 
 
-  get 'podcast/:podcast_id/episode/show/:episode_id' => 'episode#show'
+  get 'podcast/:podcast_id/episode/:id/show' => 'episode#show'
   post 'podcast/:podcast_id/episode/create' => 'episode#create'
   get 'podcast/:podcast_id/episode/create' => 'episode#form'
-  get 'podcast/:podcast_id/episode/:episode_id/edit'=> 'episode#edit'
-  post 'podcast/:podcast_id/episode/:episode_id/edit'=> 'episode#update'
-  get 'podcast/:podcast_id/episode/mylist'=> 'episode#list'
+  get 'podcast/:podcast_id/episode/:id/edit'=> 'episode#edit'
+  post 'podcast/:podcast_id/episode/:id/edit'=> 'episode#update'
+  get 'podcast/:podcast_id/episode/list'=> 'episode#list'
 
   # get 'podcast/:id/add_episode' => 'episodes_manipulate#create_form'
   # post 'podcast/:id/add_episode' => 'episodes_manipulate#create'
