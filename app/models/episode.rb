@@ -6,3 +6,4 @@ class Episode < ActiveRecord::Base
     validates_attachment :file, content_type: {content_type: 'audio/mpeg'}
     validates_attachment_file_name :file, matches: [/mp3\Z/]
 end
+        
