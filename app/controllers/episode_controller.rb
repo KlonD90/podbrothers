@@ -64,6 +64,8 @@ class EpisodeController < ApplicationController
     render "episode/list"
   end
 
+
+
   private
 
   def episode_params

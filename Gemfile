@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+gem 'taglib-ruby'
 gem 'materialize-sass'
 gem 'paperclip'
 gem 'react-rails'
