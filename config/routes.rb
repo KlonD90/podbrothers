@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'profile/index'
+
+  get 'profile/podcasts'
+
+  get 'profile/episodes'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'main/index'
   root 'main#index'
@@ -16,6 +22,7 @@ Rails.application.routes.draw do
   get 'podcast/:podcast_id/episode/:id/edit'=> 'episode#edit'
   post 'podcast/:podcast_id/episode/:id/edit'=> 'episode#update'
   get 'podcast/:podcast_id/episode/list'=> 'episode#list'
+  get 'profile/:user_id' => 'profile#index'
 
   # get 'podcast/:id/add_episode' => 'episodes_manipulate#create_form'
   # post 'podcast/:id/add_episode' => 'episodes_manipulate#create'

@@ -1,0 +1,16 @@
+<h1>Профиль <%= @user.name %></h1>
+
+<div class="section">
+  <h3>Подкасты</h3>
+  <div class="podcast-card-list">
+  <% @podcasts.each do |podcast| %>
+        <a href="<%= url_for(podcast) %>"><div class="podcast-card podcast-card_size_medium podcast-card-list__element">
+      <img src="<%= podcast.image.url(:medium) %>" alt="" class="podcast-card__image">
+      <span class="podcast-card__title">
+        <%= podcast.title %>
+      </span>
+        </a>
+    </div>
+  <% end %>
+  </div>
+</div>
