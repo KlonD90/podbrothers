@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'profile/index'
+
+  get 'profile/podcasts'
+
+  get 'profile/episodes'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'main/index'
@@ -9,8 +14,23 @@ Rails.application.routes.draw do
   get 'podcast/:id/edit'=> 'podcast#edit'
   post 'podcast/:id/edit'=> 'podcast#update'
   get 'podcast/mylist'=> 'podcast#list'
-  get 'podcast/:id/add_episode' => 'episodes_manipulate#create_form'
-  post 'podcast/:id/add_episode' => 'episodes_manipulate#create'
+
+
+  get 'podcast/:podcast_id/episode/:id/show' => 'episode#show'
+  post 'podcast/:podcast_id/episode/create' => 'episode#create'
+  get 'podcast/:podcast_id/episode/create' => 'episode#form'
+  get 'podcast/:podcast_id/episode/:id/edit'=> 'episode#edit'
+  post 'podcast/:podcast_id/episode/:id/edit'=> 'episode#update'
+  get 'podcast/:podcast_id/episode/list'=> 'episode#list'
+  get 'profile/:user_id' => 'profile#index'
+
+
+  get 'category/:id' => 'category#show'
+
+  get 'audio' => 'audio#get_info_from_file'
+
+  # get 'podcast/:id/add_episode' => 'episodes_manipulate#create_form'
+  # post 'podcast/:id/add_episode' => 'episodes_manipulate#create'
   devise_for :users, controllers: { registrations: "users/registrations" }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

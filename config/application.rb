@@ -23,5 +23,7 @@ module Podbrothers
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.react.jsx_transformer_class = React::JSX::JSXTransformer
+    config.autoload_paths += %W(#{config.root}/app/services)
+    config.font_path = "#{config.root}/public/RobotoCondensed-Regular.ttf"
   end
 end

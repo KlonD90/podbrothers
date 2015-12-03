@@ -1,0 +1,48 @@
+.podcast
+  position: relative
+  margin-bottom 12px
+  overflow hidden
+  &__cover
+    float: left
+    margin-right: 18px
+    display: inline-block
+    vertical-align top
+    //position: absolute
+    //top: 0
+    //right: 0
+  &__title
+    vertical-align top
+    margin-top 0
+    margin-bottom 6px
+  &:after
+    clear both
+
+.podcast-card
+  position relative
+  display inline-block
+  vertical-align top
+  width: 124px
+  text-align center
+  &__title
+    text-align center
+    display block
+    width 100%
+    //position absolute
+    //top 100%
+    //margin-top 10px
+    //width: 100%
+    &:hover
+      text-decoration underline
+  &__image
+    width 100px
+    height: 100px
+  &_size_medium
+    width: 224px
+    .podcast-card
+      &__image
+        width: 200px
+        height: 200px
+.podcast-card-list
+  &__element
+    margin-right 12px
+    margin-bottom 6px

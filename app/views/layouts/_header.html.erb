@@ -4,7 +4,7 @@
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <% if user_signed_in?  %>
         <li>
-          <%= link_to(user_name) %>
+          <%= link_to(user_name, action: 'index', controller: 'profile', user_id: current_user.id) %>
         </li>
         <li>
           <%= link_to('Выйти', destroy_user_session_path, :method => :delete) %>

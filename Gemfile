@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'stylus'
+gem 'mini_magick'
+gem 'taglib-ruby'
 gem 'materialize-sass'
 gem 'paperclip'
 gem 'react-rails'

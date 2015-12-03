@@ -1,11 +1,20 @@
+<h1>Список подкастов</h1>
 <% if @podcasts.blank? %>
     Not exists
 <% else %>
+    <ul class="podcast-list">
     <% @podcasts.each do |p| %>
-        <h1><%= p.title %></h1>
-        <img src="<%= p.image.url(:thumb) %>"/>
-        <div class="podcast__description">
-          <%= p.description %>
-        </div>
+        <li class="podcast">
+          <img src="<%= p.image.url(:thumb) %>" class="podcast__cover"/>
+
+          <h3 class="podcast__title"><%= p.title %></h3>
+          <div class="podcast__info">
+
+            <div class="podcast__description">
+              <%= p.description %>
+            </div>
+          </div>
+        </li>
     <% end %>
+    </ul>
 <% end %>

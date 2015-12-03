@@ -1,0 +1,7 @@
+<%= simple_form_for @episode, :method => :post, :url => url_for(action: @action), :html => {:multipart => true } do |f| %>
+    <%= f.input :title, label: 'Название', error: 'Не введено название эпизода' %>
+    <%= f.input :description, label: 'Описание', error: 'Не введено описание эпизода' %>
+    <label for="">Картинка</label>: <%= f.file_field :image, label: 'Картинка' %>
+    <label for="">Файл</label>: <%= f.file_field :file, label: 'Файл' %>
+    <%= f.button :submit %>
+<% end %>
