@@ -7,7 +7,7 @@ class Episode < ActiveRecord::Base
   validates_attachment_file_name :file, matches: [/mp3\Z/, /m4a\Z/]
   validates :podcast_id, presence: true
 
-  before_post_process :rename_file
+  after_commit :rename_file
 
   def rename_file
     #avatar_file_name - important is the first word - avatar - depends on your column in DB table
