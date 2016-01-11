@@ -1,5 +1,7 @@
 class StatisticReader
     def self.read
-        list = $redis.get("file_log")
+        while !(element = $redis.lpop("file_log")).nil? do
+            puts element
+        end
     end
 end
