@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  episode_id: 1
+  ip: MyString
+  country: MyString
+  city: MyString
+  timestamp: 1
+
+two:
+  episode_id: 1
+  ip: MyString
+  country: MyString
+  city: MyString
+  timestamp: 1
