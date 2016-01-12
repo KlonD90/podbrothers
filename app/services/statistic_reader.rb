@@ -11,7 +11,7 @@ class StatisticReader
             minute = (min-min%5).round
             # newdate = DateTime.new(gmtime.year, gmtime.month, gmtime.day, gmtime.hour, minute)
             new_date = gmtime.change(:min => minute).to_i #timestamp
-            stat = Stats.new
+            stat = Stat.new
             fileName = arr[1].split('/')
             stat.episode_id = (fileName[4]+fileName[5]+fileName[6]).to_i
             stat.timestamp = new_date
