@@ -1,7 +1,8 @@
 class StatisticReader
     def self.read
+       
         while !(element = $redis.lpop("file_log")).nil? do
-            arr = element.split(',')
+            arr = element.split('!')
             gmtime = DateTime.parse(arr[0])
             # day = gmtime.day
             # month = gmtime.month
@@ -11,14 +12,27 @@ class StatisticReader
             minute = (min-min%5).round
             # newdate = DateTime.new(gmtime.year, gmtime.month, gmtime.day, gmtime.hour, minute)
             new_date = gmtime.change(:min => minute).to_i #timestamp
-            stat = Stat.new
+            
+           
             fileName = arr[1].split('/')
-            stat.episode_id = (fileName[4]+fileName[5]+fileName[6]).to_i
-            stat.timestamp = new_date
-            stat.ip = arr[2]
-            stat.city = arr[4]
-            stat.country = arr[3]
-            stat.save!
+            episode_id = (fileName[4]+fileName[5]+fileName[6]).to_i
+            timestamp = new_date
+            ip = arr[2]
+            city = arr[4]
+            country = arr[3]
+            stat_existed = Stat.find_by(episode_id: episode_id, country: country, city: city, timestamp: timestamp)
+            if !stat_existed.nil?
+                stat_existed.increment!(:count)
+            else
+                stat = Stat.new
+                stat.episode_id = episode_id
+                stat.ip = ip
+                stat.city = city
+                stat.country = country
+                stat.timestamp = timestamp
+                stat.save!
+                    
+            end    
         end
     end
 end
