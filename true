@@ -1,0 +1,2 @@
+      invoke  active_record
+      create    db/migrate/20160112114549_add_count_to_stats.rb
