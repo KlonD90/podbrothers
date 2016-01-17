@@ -20,15 +20,26 @@ class StatisticReader
             ip = arr[2]
             city = arr[4]
             country = arr[3]
-            stat_existed = Stat.find_by(episode_id: episode_id, country: country, city: city, timestamp: timestamp)
+            latitude = arr[5].to_f
+            longitude = arr[6].to_f
+            geo = Geo.find_by city: city, country: country
+            if geo.nil?
+               geo = Geo.new
+               geo.city = city
+               geo.country = country
+               geo.latitude = latitude
+               geo.longitude = longitude
+               binding.pry
+               geo.save!                  
+            end    
+            stat_existed = Stat.find_by(episode_id: episode_id, geo: geo, timestamp: timestamp)
             if !stat_existed.nil?
                 stat_existed.increment!(:count)
             else
                 stat = Stat.new
                 stat.episode_id = episode_id
                 stat.ip = ip
-                stat.city = city
-                stat.country = country
+                stat.geo = geo
                 stat.timestamp = timestamp
                 stat.save!
                     

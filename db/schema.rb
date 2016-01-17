@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160112114549) do
+ActiveRecord::Schema.define(version: 20160113124046) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"
@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(version: 20160112114549) do
     t.integer  "download_count",     default: 0, null: false
   end
 
+  create_table "geos", force: :cascade do |t|
+    t.string   "city"
+    t.string   "country"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "podcasts", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
@@ -58,13 +67,15 @@ ActiveRecord::Schema.define(version: 20160112114549) do
   create_table "stats", force: :cascade do |t|
     t.integer  "episode_id"
     t.string   "ip"
-    t.string   "country"
-    t.string   "city"
     t.integer  "timestamp"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "count",      default: 1
+    t.integer  "geo_id"
   end
+
+  add_index "stats", ["episode_id", "timestamp", "geo_id"], name: "index_stats_on_episode_id_and_timestamp_and_geo_id", unique: true
+  add_index "stats", ["episode_id", "timestamp"], name: "index_stats_on_episode_id_and_timestamp"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
