@@ -14,8 +14,6 @@ Rails.application.routes.draw do
   get 'podcast/:id/edit'=> 'podcast#edit'
   post 'podcast/:id/edit'=> 'podcast#update'
   get 'podcast/mylist'=> 'podcast#list'
-
-
   get 'podcast/:podcast_id/episode/:id/show' => 'episode#show'
   post 'podcast/:podcast_id/episode/create' => 'episode#create'
   get 'podcast/:podcast_id/episode/create' => 'episode#form'
@@ -23,12 +21,10 @@ Rails.application.routes.draw do
   post 'podcast/:podcast_id/episode/:id/edit'=> 'episode#update'
   get 'podcast/:podcast_id/episode/list'=> 'episode#list'
   get 'profile/:user_id' => 'profile#index'
-
-
   get 'category/:id' => 'category#show'
-
   get 'audio' => 'audio#get_info_from_file'
-
+  post 'stat/:episode_id' => 'stat#show'
+  get 'stat/:episode_id' => 'stat#show'
   # get 'podcast/:id/add_episode' => 'episodes_manipulate#create_form'
   # post 'podcast/:id/add_episode' => 'episodes_manipulate#create'
   devise_for :users, controllers: { registrations: "users/registrations" }

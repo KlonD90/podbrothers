@@ -1,0 +1,44 @@
+.podcastMap{
+    position: relative;
+}
+.land {
+    fill: #ccc;
+}
+.boundary {
+    stroke: #fff;
+    stroke-width: 1px;
+    fill: transparent;
+}
+.pin {
+    /*fill:#c0c0c0;*/
+    /*stroke:white;*/
+    /*stroke-width:1px;*/
+}
+.pin:hover {
+    fill:#333;
+}
+
+.tooltip {
+    padding: 5px;
+    background: #ee6e73;
+    color: #fff;
+    box-shadow: inset 0px 0px 1px #652832;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.tooltip.visible{
+    opacity: 1;
+}
+
+.tooltip__city{
+    color:#000;
+    font: bold 14px/17px "Arial", sans-serif;
+}
+
+.tooltip__users{
+    color:#000;
+    font: 12px/15px "Arial", sans-serif;
+}
+
+
