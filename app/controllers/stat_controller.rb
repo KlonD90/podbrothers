@@ -5,8 +5,7 @@ class StatController < ApplicationController
         if episode_id.nil?
             raise "wrong input data"
         end
-        episode = Episode.find(episode_id)
-        if episode.nil?
+        if !Episode.exists?(episode_id)
             raise 'no exist episode'
         end
         time_period = params[:time_period] || 'all_time'
@@ -25,8 +24,8 @@ class StatController < ApplicationController
                 start_date = 0
                 end_date = DateTime.now.to_time.gmtime.to_i
         end
-        binding.pry
-        Stat.where("episode_id = :episode_id and timestamp >= :start_date and timestamp <= :end_date",{start_date: start_date, end_date: end_date, episode_id: episode.id}).includes(:geo)
+        Stat.where("episode_id = :episode_id and timestamp >= :start_date and timestamp <= :end_date",{start_date: start_date, end_date: end_date, episode_id: episode_id}).includes(:geo)
+        render "stat/show"
     end
 
     def show

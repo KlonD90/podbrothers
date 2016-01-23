@@ -1,0 +1,32 @@
+
+[1mFrom:[0m /var/www/podbrothers/app/controllers/stat_controller.rb @ line 27 StatController#list:
+
+     [1;34m2[0m: [32mdef[0m [1;34mlist[0m
+     [1;34m3[0m:     episode_id = params[[33m:episode_id[0m]
+     [1;34m4[0m:     time_period = params[[33m:time_period[0m]
+     [1;34m5[0m:     [32mif[0m episode_id.nil?
+     [1;34m6[0m:         raise [31m[1;31m"[0m[31mwrong input data[1;31m"[0m[31m[0m
+     [1;34m7[0m:     [32mend[0m
+     [1;34m8[0m:     [32mif[0m ![1;34;4mEpisode[0m.exists?(episode_id)
+     [1;34m9[0m:         raise [31m[1;31m'[0m[31mno exist episode[1;31m'[0m[31m[0m
+    [1;34m10[0m:     [32mend[0m
+    [1;34m11[0m:     time_period = params[[33m:time_period[0m] || [31m[1;31m'[0m[31mall_time[1;31m'[0m[31m[0m
+    [1;34m12[0m:     [32mcase[0m time_period
+    [1;34m13[0m:         [32mwhen[0m [31m[1;31m"[0m[31mlast_day[1;31m"[0m[31m[0m
+    [1;34m14[0m:             end_date = [1;34;4mDateTime[0m.now.beginning_of_day.to_time.gmtime.to_i
+    [1;34m15[0m:             start_date = [1;34;4mDate[0m.today.prev_day([1;34m1[0m).to_time.gmtime.to_i
+    [1;34m16[0m:         [32mwhen[0m [31m[1;31m"[0m[31mlast_week[1;31m"[0m[31m[0m
+    [1;34m17[0m:             end_date = [1;34;4mDateTime[0m.now.beginning_of_day.to_time.gmtime.to_i
+    [1;34m18[0m:             start_date = [1;34;4mDate[0m.today.prev_day([1;34m7[0m).to_time.gmtime.to_i
+    [1;34m19[0m:         [32mwhen[0m [31m[1;31m"[0m[31mlast_month[1;31m"[0m[31m[0m
+    [1;34m20[0m:             end_date = [1;34;4mDateTime[0m.now.beginning_of_day.to_time.gmtime.to_i
+    [1;34m21[0m:             start_date = [1;34;4mDate[0m.today.prev_month([1;34m1[0m).to_time.gmtime.to_i
+    [1;34m22[0m:         [32melse[0m
+    [1;34m23[0m:             [1;34m# all time[0m
+    [1;34m24[0m:             start_date = [1;34m0[0m
+    [1;34m25[0m:             end_date = [1;34;4mDateTime[0m.now.to_time.gmtime.to_i
+    [1;34m26[0m:     [32mend[0m
+ => [1;34m27[0m:     binding.pry
+    [1;34m28[0m:     [1;34;4mStat[0m.where([31m[1;31m"[0m[31mepisode_id = :episode_id and timestamp >= :start_date and timestamp <= :end_date[1;31m"[0m[31m[0m,{[35mstart_date[0m: start_date, [35mend_date[0m: end_date, [35mepisode_id[0m: episode.id}).includes([33m:geo[0m)
+    [1;34m29[0m: [32mend[0m
+
