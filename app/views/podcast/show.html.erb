@@ -3,3 +3,8 @@
 <div class="podcast__description">
   <%= @podcast.description %>
 </div>
+<% if @podcast.user == current_user %>
+    <div class="podcast__manipulate">
+        <%= link_to "Добавить эпизод", controller: "episode", action: "create", podcast_id: @podcast.id %>
+    </div>
+<% end %>

@@ -3,17 +3,24 @@
     Not exists
 <% else %>
     <ul class="podcast-list">
-    <% @podcasts.each do |p| %>
-        <li class="podcast">
-          <img src="<%= p.image.url(:thumb) %>" class="podcast__cover"/>
+        <% @podcasts.each do |p| %>
+            <li class="podcast">
+        <a href="<%= url_for(p) %>">
+            <img src="<%= p.image.url(:thumb) %>" class="podcast__cover"/>
 
-          <h3 class="podcast__title"><%= p.title %></h3>
-          <div class="podcast__info">
+            <h3 class="podcast__title"><%= p.title %></h3>
+        </a>
+        <div class="podcast__info">
 
             <div class="podcast__description">
-              <%= p.description %>
+                <%= p.description %>
             </div>
-          </div>
+        </div>
+        <% if p.user == current_user %>
+            <div class="podcast__manipulate">
+                <%= link_to "Добавить эпизод", controller: "episode", action: "create", podcast_id: p.id %>
+            </div>
+        <% end %>
         </li>
     <% end %>
     </ul>

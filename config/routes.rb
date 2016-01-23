@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get 'podcast/:podcast_id/episode/:id/edit'=> 'episode#edit'
   post 'podcast/:podcast_id/episode/:id/edit'=> 'episode#update'
   get 'podcast/:podcast_id/episode/list'=> 'episode#list'
+  get 'podcast/:podcast_id/episode/list/:page'=> 'episode#list'
   get 'profile/:user_id' => 'profile#index'
   get 'category/:id' => 'category#show'
   get 'audio' => 'audio#get_info_from_file'
