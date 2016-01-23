@@ -29,8 +29,7 @@ class StatisticReader
                geo.country = country
                geo.latitude = latitude
                geo.longitude = longitude
-               binding.pry
-               geo.save!                  
+               geo.save!
             end    
             stat_existed = Stat.find_by(episode_id: episode_id, geo: geo, timestamp: timestamp)
             if !stat_existed.nil?
