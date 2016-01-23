@@ -23,8 +23,8 @@ Rails.application.routes.draw do
   get 'profile/:user_id' => 'profile#index'
   get 'category/:id' => 'category#show'
   get 'audio' => 'audio#get_info_from_file'
-  post 'stat/:episode_id/:time_period' => 'stat#list'
-  get 'stat/:episode_id/:time_period' => 'stat#list'  
+  get 'stat/:episode_id/:time_period' => 'stat#show'
+  post 'stat' => 'stat#episode'
   # get 'podcast/:id/add_episode' => 'episodes_manipulate#create_form'
   # post 'podcast/:id/add_episode' => 'episodes_manipulate#create'
   devise_for :users, controllers: { registrations: "users/registrations" }
