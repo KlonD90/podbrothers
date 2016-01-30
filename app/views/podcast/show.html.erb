@@ -3,6 +3,18 @@
 <div class="podcast__description">
   <%= @podcast.description %>
 </div>
+<div class="episode__list">
+    <% @podcast.episodes.each do |e| %>
+        <div class="episode__item">
+            <span class="episode__title"><%= e.title %></span>
+            
+            <span class="episode__description"><%= e.description %></span>
+            <div class="episode__description">
+                <audio src="<%= e.file.url %>"/>
+            </div>
+        </div>
+    <% end %>
+</div>
 <% if @podcast.user == current_user %>
     <div class="podcast__manipulate">
         <%= link_to "Добавить эпизод", controller: "episode", action: "create", podcast_id: @podcast.id %>
