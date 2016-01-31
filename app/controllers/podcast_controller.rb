@@ -55,13 +55,21 @@ class PodcastController < ApplicationController
     render "podcast/list"
   end
   def feed
-    podcast_id = params[:podcast_id]
-    @podcast = Podcast.find(podcast_id)
+    @podcast_id = params[:podcast_id]
+    @podcast = Podcast.find(@podcast_id)
     if @podcast.blank?
       raise 'no exist podcast'
     end
-    binding.pry
-    @episodes = Episode.where(podcast_id: podcast_id).order(created_at: :desc)
+    @category_title = ''
+    @categories = CategoryPodcast.where(podcast_id:@podcast_id).includes(:category)
+    @categories.each do |cat|
+      if @category_title = ''
+        @category_title = cat.title
+      else
+        @category_title = @category_title + ',' +cat.title
+      end
+    end
+    @episodes = Episode.where(podcast_id: @podcast_id).order(created_at: :desc)
     if @episodes.blank?
       raise 'no episodes'
     end
