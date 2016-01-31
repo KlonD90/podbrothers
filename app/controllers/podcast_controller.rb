@@ -54,6 +54,21 @@ class PodcastController < ApplicationController
     @podcasts = Podcast.all.where(user_id: current_user.id)
     render "podcast/list"
   end
+  def feed
+    podcast_id = params[:podcast_id]
+    @podcast = Podcast.find(podcast_id)
+    if @podcast.blank?
+      raise 'no exist podcast'
+    end
+    binding.pry
+    @episodes = Episode.where(podcast_id: podcast_id).order(created_at: :desc)
+    if @episodes.blank?
+      raise 'no episodes'
+    end
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
 
   private
 

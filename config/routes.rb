@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get 'audio' => 'audio#get_info_from_file'
   get 'stat/:episode_id/:time_period' => 'stat#show'
   post 'stat' => 'stat#episode'
+  get 'feed/:podcast_id' => 'podcast#feed'
   # get 'podcast/:id/add_episode' => 'episodes_manipulate#create_form'
   # post 'podcast/:id/add_episode' => 'episodes_manipulate#create'
   devise_for :users, controllers: { registrations: "users/registrations" }
