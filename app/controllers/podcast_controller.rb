@@ -55,6 +55,8 @@ class PodcastController < ApplicationController
     render "podcast/list"
   end
   def feed
+    @prefix_url = if request.ssl? then "https" else "http" end
+    @prefix_url = @prefix_url + '://'+ request.host_with_port
     @podcast_id = params[:podcast_id]
     @podcast = Podcast.find(@podcast_id)
     if @podcast.blank?
@@ -62,13 +64,13 @@ class PodcastController < ApplicationController
     end
     @category_title = ''
     @categories = CategoryPodcast.where(podcast_id:@podcast_id).includes(:category)
-    @categories.each do |cat|
-      if @category_title = ''
-        @category_title = cat.title
-      else
-        @category_title = @category_title + ',' +cat.title
-      end
-    end
+    # @categories.each do |cat|
+    #   if @category_title = ''
+    #     @category_title = cat.title
+    #   else
+    #     @category_title = @category_title + ',' +cat.title
+    #   end
+    # end
     @episodes = Episode.where(podcast_id: @podcast_id).order(created_at: :desc)
     if @episodes.blank?
       raise 'no episodes'
@@ -86,5 +88,8 @@ class PodcastController < ApplicationController
 
   def podcast_url(record)
     url_for(action: 'show', controller: 'podcast', :id => record.id)
+  end
+  def episode_url(record)
+    url_for(action: 'show', controller: 'episode', :id => record.id)
   end
 end

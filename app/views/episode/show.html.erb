@@ -1,3 +1,4 @@
+<!--<link rel="alternate" type="application/rss+xml" title="<%= @podcast.title%>" href="<%=  @prefix_url+url_for(action: 'show', controller: 'podcast', :id => @podcast.id)%>">-->
 <h1><%= @episode.title %></h1>
 <img src="<%= @episode.image.url(:thumb) %>"/>
 <div class="episode__description">

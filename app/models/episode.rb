@@ -8,6 +8,14 @@ class Episode < ActiveRecord::Base
   validates :podcast_id, presence: true
 
   after_commit :rename_file
+  after_commit :set_duration, on: :create
+
+  def set_duration
+    # binding.pry
+    # data = Av.cli.identify(file.path)
+    # self.duration = process(data['length'])
+  end
+
 
   def rename_file
     #avatar_file_name - important is the first word - avatar - depends on your column in DB table
@@ -19,5 +27,6 @@ class Episode < ActiveRecord::Base
     return image unless image.nil?
     return podcast.image
   end
+
 end
         

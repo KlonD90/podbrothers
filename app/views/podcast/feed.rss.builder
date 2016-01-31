@@ -2,13 +2,15 @@ title = @podcast.title
 author = ""
 description = @podcast.description
 keywords = "podcasts"
-image = @podcast.image.url(:thumb)
+prefix_url = if request.ssl? then "https" else "http" end
+prefix_url = prefix_url + '://'+ request.host_with_port
+image = prefix_url + @podcast.image.url(:thumb)
 ext = 'mp3'
 
 xml.rss "xmlns:itunes" => "http://www.itunes.com/dtds/podcast-1.0.dtd",  "xmlns:media" => "http://search.yahoo.com/mrss/",  :version => "2.0" do
   xml.channel do
     xml.title title
-    xml.link url_for(@podcast)
+    xml.link prefix_url + url_for(@podcast)
     xml.description description
     xml.language 'ru'
     xml.pubDate @podcast.created_at.to_s(:rfc822)
@@ -33,10 +35,11 @@ xml.rss "xmlns:itunes" => "http://www.itunes.com/dtds/podcast-1.0.dtd",  "xmlns:
         xml.title episode.title
         xml.description episode.description
         xml.pubDate episode.created_at.to_s(:rfc822)
-        xml.enclosure :url => episode.file.url, :length => episode.file.size, :type => 'audio/mp3'
-        xml.link episode.file.url
-        xml.guid({:isPermaLink => "false"}, episode.file.url)
+        xml.enclosure :url => prefix_url + episode.file.url, :length => episode.file.size, :type => 'audio/mp3'
+        xml.link prefix_url+episode.file.url
+        xml.guid({:isPermaLink => "false"}, prefix_url+episode.file.url)
         xml.itunes :author, author
+        xml.itunes :link, prefix_url + url_for(action: 'show', controller: 'episode', :id => episode.id)
         xml.itunes :subtitle, truncate(episode.description, :length => 150)
         xml.itunes :summary, episode.description
         xml.itunes :explicit, 'no'
