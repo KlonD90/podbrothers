@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 gem 'stylus'
+gem 'mediaelement_rails'
 gem 'mini_magick'
 gem 'taglib-ruby'
 gem 'materialize-sass'

@@ -101,6 +101,9 @@ GEM
       mime-types (>= 1.16, < 3)
     materialize-sass (0.97.1)
       sass (~> 3.3)
+    mediaelement_rails (0.8.2)
+      jquery-rails (>= 1.0)
+      railties (>= 3.1)
     method_source (0.8.2)
     mime-types (2.99)
     mimemagic (0.3.0)
@@ -259,6 +262,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   materialize-sass
+  mediaelement_rails
   mini_magick
   omniauth
   omniauth-facebook
