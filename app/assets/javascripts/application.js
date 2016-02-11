@@ -23,3 +23,4 @@
 //= require jquery
 //= require materialize-sprockets
 //= require stat/stat.js
+//= require plyr.js

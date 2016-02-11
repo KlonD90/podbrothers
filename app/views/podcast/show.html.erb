@@ -1,9 +1,13 @@
-<!--<link rel="alternate" type="application/rss+xml" title="<%= @podcast.title%>" href="<%=  @prefix_url+url_for(action: 'show', controller: 'podcast', :id => @podcast.id)%>">-->
 <h1><%= @podcast.title %></h1>
 <img src="<%= @podcast.image.url(:thumb) %>"/>
 <div class="podcast__description">
   <%= @podcast.description %>
 </div>
+<% if @podcast.user == current_user %>
+    <div class="podcast__manipulate">
+        <%= link_to "Добавить эпизод", controller: "episode", action: "create", podcast_id: @podcast.id %>
+    </div>
+<% end %>
 <div class="episode__list">
     <% @podcast.episodes.each do |e| %>
         <div class="episode__item">
@@ -16,8 +20,3 @@
         </div>
     <% end %>
 </div>
-<% if @podcast.user == current_user %>
-    <div class="podcast__manipulate">
-        <%= link_to "Добавить эпизод", controller: "episode", action: "create", podcast_id: @podcast.id %>
-    </div>
-<% end %>
